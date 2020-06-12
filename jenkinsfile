@@ -2,7 +2,7 @@ pipeline {
 	agent any
 	
 	environment {
-	registry = "mobimimi/mobimoveEmployee"
+	registry = "mobimimi/mobimove-employee-api"
 	registruCredentialID = 'dockerId'
 	dockerImage = ''
 	
@@ -60,7 +60,7 @@ pipeline {
 					script{
 					//	sh "echo $PATH"
 						
-					dockerImage =	 docker.build('mobimimi/mobimoveEmployee')
+					dockerImage =	 docker.build('mobimimi/mobimove-employee-api')
 						
 					}
 				}
