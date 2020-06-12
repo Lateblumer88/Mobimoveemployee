@@ -1,0 +1,85 @@
+pipeline {
+	agent any
+	
+	environment {
+	registry = "mobimimi/mobimoveEmployee"
+	registruCredentialID = 'dockerId'
+	dockerImage = ''
+	
+	}
+	stages {
+	
+	
+	
+	
+		stage('Compilation stage'){
+			
+			steps {
+				withMaven(maven :	'3.6.3') {
+					sh 'mvn clean compile'
+				}
+			}
+		}
+		
+		stage('Testing stage'){
+			
+			steps {
+			
+				withMaven(maven : '3.6.3') {
+				
+					sh 'mvn test'
+				}
+			
+			}
+		
+		}
+		
+		stage('Build and create jar file stage') {
+		
+			steps {
+				withMaven(maven	: '3.6.3') {
+					sh	'mvn clean package -Dmaven.test.skip=true'
+					
+				}
+			
+			}
+		}
+		
+		
+		stage('Connecting to git repo') {
+		
+			steps {
+					checkout scm
+			}
+		}
+		
+		
+		stage('Build Docker Image') {
+		
+				steps {
+					script{
+					//	sh "echo $PATH"
+						
+					dockerImage =	 docker.build('mobimimi/mobimoveEmployee')
+						
+					}
+				}
+		
+		}
+		
+		stage('Deploy Image') {
+			steps {
+				script {
+					
+					 docker.withRegistry('https://registry.hub.docker.com', 'dockerhubID') {
+				 		dockerImage.push()
+					 }
+				
+				}
+			
+			}
+		
+		}
+	
+	}
+}
