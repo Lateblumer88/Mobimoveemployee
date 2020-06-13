@@ -74,7 +74,7 @@ pipeline {
 				steps {
 					script {
 						"$DIR"
-						if [-d "${env.projectDirectory}"];then
+						if (-d "${env.projectDirectory}");then
 						
 							sh 'cp dockerImage  ${env.projectDirectory}'
 						else
