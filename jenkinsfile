@@ -73,20 +73,19 @@ pipeline {
 		
 				steps {
 					script {
-						"$DIR"
-						if (-d "${env.projectDirectory}");then
+						
+						if(!fileExists("${env.projectDirectory}"))
+						{
+  							sh 'cd /opt/ '
+							sh 'mkdir ${env.projectname}'
 						
 							sh 'cp dockerImage  ${env.projectDirectory}'
-						else
-						sh 'cd /opt/ '
-						sh 'mkdir ${env.projectname}'
+						}else {
 						
-						sh 'cp dockerImage  ${env.projectDirectory}'
-						
-						fi
+							sh 'cp dockerImage  ${env.projectDirectory}'
+						}
 					
 					}
-				
 				
 				}
 		
