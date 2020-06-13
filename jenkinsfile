@@ -73,7 +73,7 @@ pipeline {
 				steps {
 					script {
 						
-						if [ -d "/opt/${env.projectname}" ];then
+						if ( -d "/opt/${env.projectname}" );then
 						
 							sh 'cp dockerImage  /opt/${env.projectname}'
 						else
