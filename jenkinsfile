@@ -62,7 +62,7 @@ pipeline {
 					script{
 					//	sh "echo $PATH"
 						
-					dockerImage =	 docker.build('mobimove-employee-api-BUILD_NUMBER')
+					dockerImage =	 docker.build('mobimove-employee-api-${BUILD_NUMBER}')
 						
 					}
 				}
@@ -97,7 +97,7 @@ pipeline {
 		
 			steps {
 				script {
-					sh 'docker run -p9090:9090 mobimove-employee-api-BUILD_NUMBER'
+					sh 'docker run -p9090:9090 mobimove-employee-api-${BUILD_NUMBER}'
 				
 				}
 			
