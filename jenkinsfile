@@ -60,7 +60,7 @@ pipeline {
 					script{
 					//	sh "echo $PATH"
 						
-					dockerImage =	 docker.build('mobimimi/mobimove-employee-api')
+					dockerImage =	 docker.build('mobimove-employee-api-0.0.2')
 						
 					}
 				}
