@@ -5,6 +5,7 @@ pipeline {
 	registry = "mobimimi/mobimove-employee-api"
 	registruCredentialID = 'dockerId'
 	dockerImage = ''
+	projectname = 'mobimoveEmployee'
 	
 	}
 	stages {
@@ -60,12 +61,51 @@ pipeline {
 					script{
 					//	sh "echo $PATH"
 						
-					dockerImage =	 docker.build('mobimove-employee-api-0.0.2')
+					dockerImage =	 docker.build('mobimove-employee-api-BUILD_NUMBER')
 						
 					}
 				}
 		
 		}
+		
+		stage ('Deploy to folder'){
+		
+				steps {
+					script {
+						
+						if [ -d "/opt/${env.projectname}" ] 
+						then
+							sh 'cp dockerImage  /opt/${env.projectname}'
+						else
+						sh 'cd /opt '
+						sh 'mkdir ${env.projectname}'
+						
+						sh 'cp dockerImage  /opt/${env.projectname}'
+						
+						fi
+					
+					}
+				
+				
+				}
+		
+		
+		
+		}
+		
+		stage ('Create container') {
+		
+			steps {
+				script {
+					sh 'docker run -p9090:9090 mobimove-employee-api-BUILD_NUMBER'
+				
+				}
+			
+			}
+		
+		
+		}
+		
 		
 		//stage('Deploy Image') {
 			//steps {
