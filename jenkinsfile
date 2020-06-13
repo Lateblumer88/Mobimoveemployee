@@ -63,7 +63,7 @@ pipeline {
 					//	sh "echo $PATH"
 						
 					dockerImage =	 docker.build('mobimove-employee-api-${BUILD_NUMBER}')
-						
+							sh "echo $PATH"
 					}
 				}
 		
@@ -79,8 +79,8 @@ pipeline {
 						
 						dir ('${env.projectDirectory}') {
         					writeFile file:'dummy', text:''
-        					sh 'cp dockerImage  ${env.projectDirectory}'
-        					sh 'ls -l'
+        					//sh 'cp dockerImage  ${env.projectDirectory}'
+        					//sh 'ls -l'
     					}
 						
 						
@@ -91,7 +91,7 @@ pipeline {
 							//sh 'cp dockerImage  ${env.projectDirectory}'
 						}else {
 						
-							sh 'cp dockerImage  ${env.projectDirectory}'
+							//sh 'cp dockerImage  ${env.projectDirectory}'
 						}
 					
 					}
@@ -106,7 +106,7 @@ pipeline {
 		
 			steps {
 				script {
-					sh 'docker run -p9090:9090 mobimove-employee-api-${BUILD_NUMBER}'
+				//	sh 'docker run -p9090:9090 mobimove-employee-api-${BUILD_NUMBER}'
 				
 				}
 			
