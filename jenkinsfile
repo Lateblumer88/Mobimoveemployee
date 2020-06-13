@@ -76,10 +76,19 @@ pipeline {
 						
 						if(!fileExists("${env.projectDirectory}"))
 						{
-  							sh 'cd /opt/ '
-							sh 'mkdir ${env.projectname}'
 						
-							sh 'cp dockerImage  ${env.projectDirectory}'
+						dir ('${env.projectDirectory}') {
+        					writeFile file:'dummy', text:''
+        					sh 'cp dockerImage  ${env.projectDirectory}'
+        					sh 'ls -l'
+    					}
+						
+						
+  							//sh 'cd /opt/ '
+  							//sh 'ls'
+							//sh 'mkdir ${env.projectname}'
+						
+							//sh 'cp dockerImage  ${env.projectDirectory}'
 						}else {
 						
 							sh 'cp dockerImage  ${env.projectDirectory}'
