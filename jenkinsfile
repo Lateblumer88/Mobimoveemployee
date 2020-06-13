@@ -67,19 +67,19 @@ pipeline {
 		
 		}
 		
-		stage('Deploy Image') {
-			steps {
-				script {
+		//stage('Deploy Image') {
+			//steps {
+				//script {
 					
-					 docker.withRegistry('https://registry.hub.docker.com', 'dockerhubID') {
-				 		dockerImage.push()
-					 }
+					// docker.withRegistry('https://registry.hub.docker.com', 'dockerhubID') {
+				 	//	dockerImage.push()
+					// }
 				
-				}
+				//}
 			
-			}
+			//}
 		
-		}
+		//}
 	
 	}
 }
