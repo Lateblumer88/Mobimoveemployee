@@ -6,6 +6,7 @@ pipeline {
 	registruCredentialID = 'dockerId'
 	dockerImage = ''
 	projectname = 'mobimoveEmployee'
+	projectDirectory = '/opt/${env.projectname}'
 	
 	}
 	stages {
@@ -72,15 +73,15 @@ pipeline {
 		
 				steps {
 					script {
+						"$DIR"
+						if [-d "${env.projectDirectory}"];then
 						
-						if ( -d "/opt/${env.projectname}" );then
-						
-							sh 'cp dockerImage  /opt/${env.projectname}'
+							sh 'cp dockerImage  ${env.projectDirectory}'
 						else
-						sh 'cd /opt '
+						sh 'cd /opt/ '
 						sh 'mkdir ${env.projectname}'
 						
-						sh 'cp dockerImage  /opt/${env.projectname}'
+						sh 'cp dockerImage  ${env.projectDirectory}'
 						
 						fi
 					
