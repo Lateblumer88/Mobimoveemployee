@@ -102,11 +102,12 @@ pipeline {
 		
 		}
 		
-		stage ('Create container') {
+		stage ('Create container and deploy') {
 		
 			steps {
 				script {
-					sh 'docker run -d -p 9090:9090 mobimove-employee-api-${BUILD_NUMBER}'
+					sh 'docker run -d -p 9090:9090 --name  mobimoveApi mobimove-employee-api-${BUILD_NUMBER}'
+					
 				
 				}
 			
