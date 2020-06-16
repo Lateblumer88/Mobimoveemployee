@@ -106,7 +106,7 @@ pipeline {
 		
 			steps {
 				script {
-					sh 'docker run -d -p 9090:9090 --name  mobimoveApi mobimove-employee-api-${BUILD_NUMBER}'
+					sh 'docker run -d -p 9090:9090 --name  mobimoveEmployeeApi mobimove-employee-api-${BUILD_NUMBER}'
 					
 				
 				}
