@@ -61,7 +61,7 @@ pipeline {
 				steps {
 					script{
 					//	sh "echo $PATH"
-						
+					//dockerImage =	 docker.build('${env.PROJECT}-${env.POM_VERSION}')
 					dockerImage =	 docker.build('mobimove-employee-api-${BUILD_NUMBER}')
 							sh "echo $PATH"
 					}
@@ -107,7 +107,7 @@ pipeline {
 			steps {
 				script {
 					sh 'docker run -d -p 7575:7575 --name  mobimoveEmployeeApi mobimove-employee-api-${BUILD_NUMBER}'
-					
+					//sh 'docker run -d -p 8080:8080 --name  ${env.PROJECT} ${env.PROJECT}-${env.POM_VERSION}'
 				
 				}
 			
@@ -130,6 +130,6 @@ pipeline {
 			//}
 		
 		//}
-	
+	//This is a test to see if authomatic trigger is running.
 	}
 }
